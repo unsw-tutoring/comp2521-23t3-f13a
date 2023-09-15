@@ -10,12 +10,25 @@ struct node {
 // ! use a while loop
 int listSum(struct node *list) {
 	// TODO
-	return 0;
+	struct node *curr = list;
+	int sum = 0;
+
+	while (curr != NULL) {
+		sum += curr->value;
+		curr = curr->next;
+	}
+
+	return sum;
 }
 
 // return the sum of nodes in a linked list, given its head
 // ! use a for loop
 int listSum(struct node *list) {
-	// TODO
-	return 0;
+	int sum = 0;
+
+	for (struct node *curr = list; curr != NULL; curr = curr->next) {
+		sum += curr->value;
+	}
+
+	return sum;
 }
