@@ -11,8 +11,19 @@
 //      return 2, because there are two elements that appear an odd number of
 //      times: 3 (occurs 1 time) and 4 (occurs 3 times).
 int numOddOccurrences(int arr[], int size) {
-	// TODO
-	return 0;
+	Set s = SetNew();
+
+	for (int i = 0; i < size; i++) {
+		if (SetContains(s, arr[i])) {
+			SetDelete(s, arr[i]);
+		} else {
+			SetInsert(s, arr[i]);
+		}
+	}
+
+	int answer = SetSize(s);
+	SetFree(s);
+	return answer;
 }
 
 // This function takes an array of integers and its size,
@@ -22,8 +33,23 @@ int numOddOccurrences(int arr[], int size) {
 //     because there are three elements that occur exactly once : 3,
 //     8 and 7.
 int numSingleOccurrences(int arr[], int size) {
-	// TODO
-	return 0;
+	Set singles = SetNew();
+	Set dups = SetNew();
+
+	for (int i = 0; i < size; i++) {
+		if (SetContains(dups, arr[i])) {
+			continue;
+		} else if (SetContains(singles, arr[i])) {
+			SetDelete(singles, arr[i]);
+			SetInsert(dups, arr[i]);
+		} else {
+			SetInsert(singles, arr[i]);
+		}
+	}
+	int answer = SetSize(singles);
+	SetFree(singles);
+	SetFree(dups);
+	return answer;
 }
 
 int main(void) {
